@@ -4,110 +4,102 @@ namespace HomeWork2
 {
     class Program
     {
-        static void Task1(double a, double b)
+        static double Task1(double a, double b)
         {
             if (a > b)
             {
-                Console.WriteLine($"Result: {a + b}");
+                return a + b;
             }
             else if (a == b)
             {
-                Console.WriteLine($"Result: {a * b}");
-            }
-            else if (a < b)
-            {
-                Console.WriteLine($"Result: {a - b}");
-            }
-        }
-
-        static void Task2(double x, double y)
-        {
-            if(x > 0 && y > 0)
-            {
-                Console.WriteLine($"I quarter");
-            }
-            else if (x < 0 && y > 0)
-            {
-                Console.WriteLine($"II quarter");
-            }
-            else if (x < 0 && y < 0)
-            {
-                Console.WriteLine($"III quarter");
-            }
-            else if (x > 0 && y < 0)
-            {
-                Console.WriteLine($"IV quarter");
+                return a* b;
             }
             else
             {
-                Console.WriteLine($"Zero or on the line");
+                return a - b;
             }
         }
 
-        static void Task3(double a, double b, double c)
+        static double Task2(double x, double y)
+        {
+            if(x > 0 && y > 0)
+            {
+                return 1;
+            }
+            else if (x < 0 && y > 0)
+            {
+                return 2;
+            }
+            else if (x < 0 && y < 0)
+            {
+                return 3;
+            }
+            else if (x > 0 && y < 0)
+            {
+                return 4;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        static (double a,double b, double c) Task3(double a, double b, double c)
         {
             if (a < b && a < c)
             {
-                Console.WriteLine(a);
                 if (b < c)
                 {
-                    Console.WriteLine(b);
-                    Console.WriteLine(c);
+                    return (a, b, c);
                 }
                 else
                 {
-                    Console.WriteLine(c);
-                    Console.WriteLine(b);
+                    return (a, c, b);
                 }
             }
             else if (b < a && b < c)
             {
-                Console.WriteLine(b);
                 if (a < c)
                 {
-                    Console.WriteLine(a);
-                    Console.WriteLine(c);
+                    return (b, a, c);
                 }
                 else
                 {
-                    Console.WriteLine(c);
-                    Console.WriteLine(a);
+                    return (b, c, a);
                 }
             }
-            else if (c < a && c < b)
+            else
             {
-                Console.WriteLine(c);
                 if (a < b)
                 {
-                    Console.WriteLine(a);
-                    Console.WriteLine(b);
+                    return (c, a, b);
                 }
                 else
                 {
-                    Console.WriteLine(b);
-                    Console.WriteLine(a);
+                    return (c, b, a);
                 }
             }
         }
 
-        static void Task4(double a, double b, double c)
+        static (double x1, double x2) Task4(double a, double b, double c)
         {
             double discriminant = b * b - 4 * a * c;
             double x1;
             double x2;
+
             if (discriminant >= 0)
             {
                 x1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
                 x2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
-                Console.WriteLine($"x1 = {x1}; x2 = {x2}");
+                return ( x1,  x2);
             }
             else
             {
-                Console.WriteLine("No result");
+                return (0,0);
             }
         }
 
-        static void Task5(int num)
+        static string Task5(int num)
         {
             string a="";
             string b="";
@@ -209,21 +201,27 @@ namespace HomeWork2
                 }
             }
 
-            Console.WriteLine($"Result: {a} {b}");
+            return $"{a} {b}";
         }
 
         static void Main(string[] args)
         {
-            //double a = Convert.ToDouble(Console.ReadLine());
-            //double b = Convert.ToDouble(Console.ReadLine());
-            //double c = Convert.ToDouble(Console.ReadLine());
-            int number = Convert.ToInt32(Console.ReadLine());
+            double a = Convert.ToDouble(Console.ReadLine());
+            double b = Convert.ToDouble(Console.ReadLine());
+            double c = Convert.ToDouble(Console.ReadLine());
+            //int number = Convert.ToInt32(Console.ReadLine());
 
-            //Task1(a, b);
-            //Task2(a, b);
-            //Task3(a, b, c);
-            //Task4(a, b, c);
-            Task5(number);
+            //Console.WriteLine(Task1(a, b));
+
+            //Console.WriteLine(Task2(a, b));
+
+            (double a, double b, double c) result = Task3(a, b, c);
+            Console.WriteLine(result);
+
+            //(double x1, double x2) result = Task4(a, b, c);
+            //Console.WriteLine(result);
+
+            //Console.WriteLine(Task5(number));
         }
     }
 }
